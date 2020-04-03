@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: Imooc-Passbook
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/passbook?autoRecnnect=true
+    password: root
+    username: root
+    driver-class-name: com.mysql.jdbc.Driver
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    consumer:
+      group-id: passbook #kafak消费者组
+    listener:
+      concurrency: 4 #消费者的并非数
+  data:
+    hbase:
+      quorum: 127.0.0.1:2181
+      rootDir: file:///User/wuhao/QinyZhang/Soft/hbase_data/root_dir
+      nodeParent: /hbase
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+server:
+  port: 9528
+
+logging:
+  level:
+    root: info

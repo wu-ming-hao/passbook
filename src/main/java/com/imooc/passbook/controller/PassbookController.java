@@ -25,29 +25,19 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/passbook")
 public class PassbookController {
 
-    /**
-     * 用户优惠卷服务
-     */
+    /** 用户优惠卷服务 */
     private final IUserPassService userPassService;
 
-    /**
-     * 优惠卷库存服务
-     */
+    /** 优惠卷库存服务 */
     private final IInventoryService iInventoryService;
 
-    /**
-     * 领取优惠卷服务
-     */
+    /** 领取优惠卷服务 */
     private final IGainPassTemplateService gainPassTemplateService;
 
-    /**
-     * 反馈服务
-     */
+    /** 反馈服务 */
     private final IFeedbackServive feedbackServive;
 
-    /**
-     *  HttpServletRequest
-     */
+    /** HttpServletRequest */
     private final HttpServletRequest httpServletRequest;
 
     @Autowired

@@ -45,23 +45,22 @@ public class UserService implements IUserService {
         byte[] PHONE = Constants.UserTable.PHONE.getBytes();
         byte[] ADDRESS = Constants.UserTable.ADDRESS.getBytes();
 
-        Long curCount = redisTemplate.opsForValue().increment(Constants.USE_COUNT_REDIS_KEY,1);
+        Long curCount = redisTemplate.opsForValue().increment(Constants.USE_COUNT_REDIS_KEY, 1);
         Long userId = genUserId(curCount);
 
         List<Mutation> datas = new ArrayList<Mutation>();
         Put put = new Put(Bytes.toBytes(userId));
 
-        put.addColumn(FAMIL_B,NAME,Bytes.toBytes(user.getBaseInfo().getName()));
-        put.addColumn(FAMIL_B,AGE,Bytes.toBytes(user.getBaseInfo().getAge()));
-        put.addColumn(FAMIL_B,SEX,Bytes.toBytes(user.getBaseInfo().getSex()));
+        put.addColumn(FAMIL_B, NAME, Bytes.toBytes(user.getBaseInfo().getName()));
+        put.addColumn(FAMIL_B, AGE, Bytes.toBytes(user.getBaseInfo().getAge()));
+        put.addColumn(FAMIL_B, SEX, Bytes.toBytes(user.getBaseInfo().getSex()));
 
-
-        put.addColumn(FAMIL_O,PHONE,Bytes.toBytes(user.getOtherInfo().getPhone()));
-        put.addColumn(FAMIL_O,ADDRESS,Bytes.toBytes(user.getOtherInfo().getAddress()));
+        put.addColumn(FAMIL_O, PHONE, Bytes.toBytes(user.getOtherInfo().getPhone()));
+        put.addColumn(FAMIL_O, ADDRESS, Bytes.toBytes(user.getOtherInfo().getAddress()));
 
         datas.add(put);
 
-        hbaseTemplate.saveOrUpdates(Constants.UserTable.TABLE_NAME,datas);
+        hbaseTemplate.saveOrUpdates(Constants.UserTable.TABLE_NAME, datas);
 
         user.setId(userId);
 
@@ -74,8 +73,8 @@ public class UserService implements IUserService {
      * @param prefix
      * @return
      */
-    public Long genUserId(Long prefix){
+    public Long genUserId(Long prefix) {
         String suffix = RandomStringUtils.randomNumeric(5);
-        return Long.valueOf(prefix+suffix);
+        return Long.valueOf(prefix + suffix);
     }
 }
